@@ -7,6 +7,7 @@ import com.example.apt.exception.NoRouteFoundException;
 import com.example.apt.facade.Postcard;
 import com.example.apt.facade.model.RouteMeta;
 import com.example.apt.facade.template.IProvider;
+import com.example.apt.facade.template.IProviderGroup;
 import com.example.apt.facade.template.IRouteGroup;
 import com.example.apt.facade.template.IRouteRoot;
 import com.example.apt.launcher.ARouter;
@@ -25,6 +26,7 @@ import static com.example.apt.utils.Consts.DOT;
 import static com.example.apt.utils.Consts.ROUTE_ROOT_PAKCAGE;
 import static com.example.apt.utils.Consts.SDK_NAME;
 import static com.example.apt.utils.Consts.SEPARATOR;
+import static com.example.apt.utils.Consts.SUFFIX_PROVIDERS;
 import static com.example.apt.utils.Consts.SUFFIX_ROOT;
 import static com.example.apt.utils.Consts.TAG;
 
@@ -56,6 +58,8 @@ public class LogisticsCenter {
             for (String name : routerMap) {
                 if (name.startsWith(ROUTE_ROOT_PAKCAGE + DOT + SDK_NAME + SEPARATOR + SUFFIX_ROOT)) {
                     ((IRouteRoot) Class.forName(name).newInstance()).loadInto(Warehouse.groupsIndex);
+                } else if (name.startsWith(ROUTE_ROOT_PAKCAGE + DOT + SDK_NAME + SEPARATOR + SUFFIX_PROVIDERS)) {
+                    ((IProviderGroup) Class.forName(name).newInstance()).loadInto(Warehouse.providersIndex);
                 }
             }
 

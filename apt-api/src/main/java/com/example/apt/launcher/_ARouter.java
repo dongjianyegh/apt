@@ -19,6 +19,7 @@ import com.example.apt.exception.NoRouteFoundException;
 import com.example.apt.facade.Postcard;
 import com.example.apt.facade.callback.InterceptorCallback;
 import com.example.apt.facade.callback.NavigationCallback;
+import com.example.apt.facade.service.InterceptorService;
 import com.example.apt.facade.template.ILogger;
 import com.example.apt.thread.DefaultPoolExecutor;
 import com.example.apt.utils.Consts;
@@ -47,7 +48,7 @@ import static com.example.apt.facade.enums.RouteType.SERVICE;
 final class _ARouter {
     static ILogger logger = new DefaultLogger(Consts.TAG);
     private volatile static boolean monitorMode = false;
-    private volatile static boolean debuggable = false;
+    private volatile static boolean debuggable = true;
     private volatile static boolean autoInject = false;
     private volatile static _ARouter instance = null;
     private volatile static boolean hasInit = false;
@@ -55,7 +56,7 @@ final class _ARouter {
     private static Handler mHandler;
     private static Context mContext;
 
-//    private static InterceptorService interceptorService;
+    private static InterceptorService interceptorService;
 
     private _ARouter() {
     }
@@ -226,7 +227,7 @@ final class _ARouter {
 
     static void afterInit() {
         // Trigger interceptor init, use byName.
-//        interceptorService = (InterceptorService) ARouter.getInstance().build("/arouter/service/interceptor").navigation();
+        interceptorService = (InterceptorService) ARouter.getInstance().build("/arouter/service/interceptor").navigation();
     }
 
     protected <T> T navigation(Class<? extends T> service) {
