@@ -1,1 +1,1 @@
-include ':app', ':apt-annotation', ':apt-compiler', ':apt-api'
+include ':app', ':apt-annotation', ':apt-compiler', ':apt-api', ':apt-gradle-plugin'
