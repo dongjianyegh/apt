@@ -6,7 +6,7 @@ buildscript {
         google()
         jcenter()
         maven {//本地Maven仓库地址
-            url uri('/Users/dongjianye/Desktop/temp/repos')
+            url uri('D:/Repos')
         }
     }
     dependencies {
