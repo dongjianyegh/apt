@@ -25,6 +25,7 @@ uploadArchives {
     repositories {
 
 
+
         mavenDeployer {
             //提交到远程服务器：
             // repository(url: "http://www.xxx.com/repos") {
